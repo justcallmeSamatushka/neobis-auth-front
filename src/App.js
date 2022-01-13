@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import { Input } from 'antd';
+import { Login } from './pages/Login';
+import { Registration } from './pages/Registration';
+import { Route, Routes } from 'react-router-dom';
+import { privateRoutes, publicRoutes } from './router';
 
-function App() {
+export const App = () => {
+  const auth = false;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      {
+        auth ?
+          <Routes>
+            {
+              privateRoutes.map(route => 
+                <Route path={route.path} element={route.element} key={route.path}/> 
+              )
+            }
+          </Routes>
+        :
+          <Routes>
+            {
+              publicRoutes.map(route => 
+                <Route path={route.path} element={route.element} key={route.path}/>
+              )
+            }
+          </Routes>
+      }
     </div>
-  );
+  )
 }
-
-export default App;

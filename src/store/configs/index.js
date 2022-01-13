@@ -18,6 +18,7 @@ export const API_REQUEST = async (cmd, obj, multipare) => {
   // getURL - функция для работы с параметрами типа /:id
   const url = obj?.params ? getUrl(comm.url, obj.params) : comm.url
   const multipare_Content = !!multipare
+  const token = localStorage.getItem('token') || ''
 
   // все встыкаем по местам
   return await instance({
@@ -29,12 +30,12 @@ export const API_REQUEST = async (cmd, obj, multipare) => {
     ?
       {
         'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       } 
     :
       {
         'Content-Type': 'application/json; charset=utf-8',
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       }
   })
 }

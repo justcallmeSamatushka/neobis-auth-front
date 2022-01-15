@@ -10,9 +10,20 @@ export const signupAsync = (form) => {
       // SIGNUP_CMD_POST обычная строка из const.js но точна похожее название как и commands
       // эта функция у нас принимает 3 аргумента cmd, obj, multihuyna
       await API_REQUEST(SIGNUP_CMD_POST, { data: form })
+
       dispatch(signupFormSucc())
     } catch ({response}) {
-      dispatch(signupFormFail(response.data))
+
+      let errors = {}
+
+      response.data.forEach(element => {
+        errors = {
+          ...errors,
+          ...element,
+        }
+      });
+      
+      dispatch(signupFormFail(errors))
     }
   }
 }

@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { publicRoutes } from './router';
 
 export const App = () => {
+
   return (
     <div className='App'>
       <Routes>

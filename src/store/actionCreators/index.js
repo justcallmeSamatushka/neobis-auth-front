@@ -5,7 +5,8 @@ import {
   SIGNUP_FORM_SUCCESS,
   SIGNIN_FORM_STARTED,
   SIGNIN_FORM_SUCCESS,
-  SIGNIN_FORM_FAILURE
+  SIGNIN_FORM_FAILURE,
+  USERS_ME
 } from '../../const';
 
 
@@ -18,3 +19,6 @@ export const homePageHasToken = (payload) => ({type: HOMEPAGE_HASTOKEN, payload}
 export const signinFormStart = () => ({type: SIGNIN_FORM_STARTED})
 export const signinFormSucc = (payload) => ({type: SIGNIN_FORM_SUCCESS, payload})
 export const signinFormFail = (payload) => ({type: SIGNIN_FORM_FAILURE, payload})
+
+// USERS
+export const usersMe = (payload) => ({type: USERS_ME, payload})

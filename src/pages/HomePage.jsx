@@ -1,20 +1,29 @@
+import { Table } from 'antd';
 import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { userMe } from '../store/asyncActions/usersMe';
+import { asyncAllUsers } from '../store/reducers/ALL_USERS/asyncAction';
 
 export const HomePage = () => {
-  const navigate = useNavigate()
-  const { hasToken } = useSelector(state => state.usersReducer)
+  const dispatch = useDispatch()
+  // const navigate = useNavigate()
+  const {aboutMe} = useSelector(state => state.usersMe)
+  // console.log(hasToken)
+  const { users, columns } = useSelector(state => state.allUser)
 
   useEffect(() => {
-    if (!hasToken) {
-      navigate('/signin')
-    }
-  }, [hasToken])
+    dispatch(userMe())
+    dispatch(asyncAllUsers()) 
+  }, [])
+
 
   return (
-    <div>
-      HOMEPAGE
-    </div>
+    <Table
+      columns={columns}
+      dataSource={users}
+    >
+      
+    </Table>
   )
 }

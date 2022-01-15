@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Input, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { signinAsync } from '../store/asyncActions/signinAsync';
 
 export const Login = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
   })
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onChange = (type, value) => {
     switch (type) {
@@ -28,7 +32,9 @@ export const Login = () => {
   }
 
   const onSubmit = () => {
-    console.log(form);
+    console.log('signin', form)
+    dispatch(signinAsync(form))
+    navigate('/')
   }
 
   return (

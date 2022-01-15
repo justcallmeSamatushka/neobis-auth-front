@@ -26,16 +26,16 @@ export const API_REQUEST = async (cmd, obj, multipare) => {
     url,
     data: obj?.data,
     params: obj?.query,
-    headers: multipare_Content 
+    headers: multipare_Content
     ?
       {
         'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`,
-      } 
+        Authorization: token ? `Bearer ${token}` : '',
+      }
     :
       {
         'Content-Type': 'application/json; charset=utf-8',
-        Authorization: `Bearer ${token}`,
+        Authorization: token ? `Bearer ${token}` : '',
       }
   })
 }
